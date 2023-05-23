@@ -26,7 +26,7 @@ export const userStore = create((set) => ({
 
             localStorage.setItem('token', data.token);
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 
@@ -51,7 +51,7 @@ export const userStore = create((set) => ({
 
             localStorage.setItem('token', data.token);
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 
@@ -74,7 +74,7 @@ export const userStore = create((set) => ({
 
             localStorage.removeItem('token');
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 
@@ -113,7 +113,7 @@ export const userStore = create((set) => ({
             
             set({ user: data });
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 
@@ -136,7 +136,7 @@ export const userStore = create((set) => ({
 
             localStorage.removeItem('token');
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 }));
