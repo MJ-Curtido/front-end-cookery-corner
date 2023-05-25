@@ -17,16 +17,20 @@ export const userStore = create((set) => ({
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error);
+                throw { message: errorData.error, status: response.status };
             }
-
             const data = await response.json();
 
             set({ user: data.user });
 
             localStorage.setItem('token', data.token);
         } catch (error) {
-            throw error;
+            if(error.status) {
+                throw error;
+            }
+            else {
+                throw { message: 'There is something wrong.', status: 500};
+            }
         }
     },
 
@@ -42,7 +46,7 @@ export const userStore = create((set) => ({
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error);
+                throw { message: errorData.error, status: response.status };
             }
 
             const data = await response.json();
@@ -51,7 +55,12 @@ export const userStore = create((set) => ({
 
             localStorage.setItem('token', data.token);
         } catch (error) {
-            throw error;
+            if(error.status) {
+                throw error;
+            }
+            else {
+                throw { message: 'There is something wrong.', status: 500};
+            }
         }
     },
 
@@ -67,14 +76,19 @@ export const userStore = create((set) => ({
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error);
+                throw { message: errorData.error, status: response.status };
             }
 
             set({ user: null });
 
             localStorage.removeItem('token');
         } catch (error) {
-            throw error;
+            if(error.status) {
+                throw error;
+            }
+            else {
+                throw { message: 'There is something wrong.', status: 500};
+            }
         }
     },
 
@@ -106,14 +120,19 @@ export const userStore = create((set) => ({
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error);
+                throw { message: errorData.error, status: response.status };
             }
             
             const data = await response.json();
             
             set({ user: data });
         } catch (error) {
-            throw error;
+            if(error.status) {
+                throw error;
+            }
+            else {
+                throw { message: 'There is something wrong.', status: 500};
+            }
         }
     },
 
@@ -129,14 +148,19 @@ export const userStore = create((set) => ({
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error);
+                throw { message: errorData.error, status: response.status };
             }
 
             set({ user: null });
 
             localStorage.removeItem('token');
         } catch (error) {
-            throw error;
+            if(error.status) {
+                throw error;
+            }
+            else {
+                throw { message: 'There is something wrong.', status: 500};
+            }
         }
     },
 }));
