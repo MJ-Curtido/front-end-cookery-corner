@@ -92,6 +92,33 @@ export const userStore = create(
                 }
             },
 
+            fillUser: async () => {
+                try {
+                    const response = await fetch('http://127.0.0.1:3007/users/me', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        },
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw { message: errorData.error, status: response.status };
+                    }
+
+                    const data = await response.json();
+
+                    set({ user: data });
+                } catch (error) {
+                    if (error.status) {
+                        throw error;
+                    } else {
+                        throw { message: 'There is something wrong.', status: 500 };
+                    }
+                }
+            },
+
             updateUser: async (name, email, password, telephone) => {
                 try {
                     const requestData = {};

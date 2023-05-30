@@ -5,9 +5,7 @@ const AuthGuard = ({ children }) => {
     const router = useRouter();
 
     useEffect(() => {
-        const isAuthenticated = localStorage.getItem('token') && localStorage.getItem('token') !== '';
-        
-        if (!isAuthenticated) {
+        if (!localStorage.getItem('token') || !localStorage.getItem('my-app-storage')) {
             router.push('/');
         }
     }, []);
