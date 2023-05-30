@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, CssBaseline, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, CssBaseline, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -10,13 +10,8 @@ const FormLogin = () => {
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [messageSnackbar, setMessageSnackbar] = useState('');
+    const [severitySnackbar, setSeveritySnackbar] = useState('success');
     const router = useRouter();
-
-    useEffect(() => {
-        if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
-            router.push('/');
-        }
-    }, []);
 
     const login = userStore((state) => state.login);
 
@@ -24,6 +19,12 @@ const FormLogin = () => {
         email: yup.string().email('Enter a valid email.').required('Email is required.'),
         password: yup.string().min(7, 'Password must include at least 8 characters.').required('Password is required.'),
     });
+
+    useEffect(() => {
+        if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
+            router.push('/');
+        }
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,19 +41,21 @@ const FormLogin = () => {
             .then(() => {
                 login(formData.email, formData.password)
                     .then(() => {
-                        //TODO: hacer que se redirija a la pagina principal
-                        router.push('register');
-
                         setErrors({});
                         setMessageSnackbar('Successful login.');
+                        setSeveritySnackbar('success');
                         setOpenSnackbar(true);
+
+                        router.push('/cookerycorner/main');
                     })
                     .catch((error) => {
                         if (error.status === 400) {
                             setMessageSnackbar('Email or password is incorrect.');
+                            setSeveritySnackbar('error');
                             setOpenSnackbar(true);
                         } else {
                             setMessageSnackbar('There is something wrong.');
+                            setSeveritySnackbar('error');
                             setOpenSnackbar(true);
                         }
                     });
@@ -66,6 +69,7 @@ const FormLogin = () => {
                     setErrors(validationErrors);
                 }
                 setMessageSnackbar('There is something wrong.');
+                setSeveritySnackbar('error');
                 setOpenSnackbar(true);
             });
 
@@ -96,7 +100,9 @@ const FormLogin = () => {
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
 
-            <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} message={messageSnackbar} />
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+                <Alert severity={severitySnackbar}>{messageSnackbar}</Alert>
+            </Snackbar>
 
             <Grid
                 item

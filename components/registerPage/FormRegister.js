@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -10,6 +10,7 @@ const FormRegister = () => {
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [messageSnackbar, setMessageSnackbar] = useState('');
+    const [severitySnackbar, setSeveritySnackbar] = useState('success');
     const router = useRouter();
 
     const signin = userStore((state) => state.signin);
@@ -44,19 +45,21 @@ const FormRegister = () => {
                 .then(() => {
                     signin(formData.name, formData.email, formData.password, formData.phone)
                         .then(() => {
-                            //TODO: hacer que se redirija a la pagina principal
-                            router.push('/');
-
                             setErrors({});
                             setMessageSnackbar('Sign up successfully.');
+                            setSeveritySnackbar('success');
                             setOpenSnackbar(true);
+
+                            router.push('/cookerycorner/main');
                         })
                         .catch((error) => {
                             if (error.status === 400) {
                                 setMessageSnackbar('Email or phone already registered.');
+                                setSeveritySnackbar('error');
                                 setOpenSnackbar(true);
                             } else {
                                 setMessageSnackbar('There is something wrong.');
+                                setSeveritySnackbar('error');
                                 setOpenSnackbar(true);
                             }
                         });
@@ -70,6 +73,7 @@ const FormRegister = () => {
                         setErrors(validationErrors);
                     }
                     setMessageSnackbar('There is something wrong.');
+                    setSeveritySnackbar('error');
                     setOpenSnackbar(true);
                 });
         }
@@ -100,7 +104,9 @@ const FormRegister = () => {
 
     return (
         <>
-            <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} message={messageSnackbar} />
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+                <Alert severity={severitySnackbar}>{messageSnackbar}</Alert>
+            </Snackbar>
 
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
