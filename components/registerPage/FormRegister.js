@@ -134,7 +134,7 @@ const FormRegister = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar alt="Icon" src="/icon.png" />
+                        <Avatar alt="Icon" src="/iconCC.png" />
                         <Typography component="h1" variant="h5">
                             Sign up
                         </Typography>
@@ -199,7 +199,7 @@ const FormRegister = () => {
                                 error={!!errors.phone}
                                 helperText={errors.phone}
                             />
-                            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                            <Button className={CSS.btn} type="submit" fullWidth variant="contained">
                                 Sign up
                             </Button>
                             <Grid container>

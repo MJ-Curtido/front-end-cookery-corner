@@ -1,0 +1,15 @@
+.header {
+    background-color: #424242;
+    color: #ffffff;
+    position: static;
+}
+
+.iconApp {
+    margin-right: 17px;
+}
+
+.iconAdd {
+    margin-right: 17px;
+    width: 17px;
+    height: auto;
+}

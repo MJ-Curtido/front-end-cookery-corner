@@ -127,7 +127,7 @@ const FormLogin = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar alt="Icon" src="/icon.png" />
+                    <Avatar alt="Icon" src="/iconCC.png" />
                     <Typography component="h1" variant="h5">
                         Log in
                     </Typography>
@@ -156,7 +156,7 @@ const FormLogin = () => {
                             error={!!errors.password}
                             helperText={errors.password}
                         />
-                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        <Button className={CSS.btn} type="submit" fullWidth variant="contained">
                             Log In
                         </Button>
                         <Grid container>
