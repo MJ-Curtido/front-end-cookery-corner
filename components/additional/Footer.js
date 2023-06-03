@@ -1,6 +1,8 @@
+//#region Imports
 import React from 'react';
 import { Container, Link, Typography } from '@mui/material';
 import CSS from './Footer.module.css';
+//#endregion
 
 //TODO: Añadir lo que está abajo comentado pero añadiendo mi número de teléfono y mi correo y que el número te lleve a mi whatsapp
 

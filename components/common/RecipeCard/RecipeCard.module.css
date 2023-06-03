@@ -1,17 +1,39 @@
 .author {
     align-items: center;
     display: flex;
+    color: white;
+}
+
+.card {
+    margin: 0 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #424242;
+}
+
+.container {
+    width: 50%;
+
+    @media (max-width: 992px) {
+        width: 100%;
+    }
 }
 
 .description {
-    margin-bottom: 10px;
+    margin-bottom: 17px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: white;
 }
 
 .iconAuthor {
     margin-right: 7px;
 }
 
-/*Ésto está por terminar*/
+.marginLeft {
+    margin-left: auto;
+}
+
+.textColor {
+    color: white;
+}

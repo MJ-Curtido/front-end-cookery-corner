@@ -1,6 +1,8 @@
+//#region Imports
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Cookies from 'universal-cookie';
+//#endregion
 
 const AuthGuard = ({ children }) => {
     const router = useRouter();

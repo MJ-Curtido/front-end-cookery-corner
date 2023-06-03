@@ -1,19 +1,32 @@
-import { Card, CardHeader, CardMedia, CardContent, Typography } from '@mui/material';
+//#region Imports
+import { Card, CardHeader, CardMedia, CardContent, Rating, Typography } from '@mui/material';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import CSS from './RecipeCard.module.css';
+//#endregion
 
-const RecipeCard = ({title, image, description, author, valuation}) => {
+const RecipeCard = ({ title, image, description, author, valuation }) => {
     return (
-        <div style={{ width: '50%' }}>
-            <Card sx={{ margin: '0 10px 20px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', backgroundColor: '#424242' }}>
-                <CardHeader sx={{color: 'white'}} title={title} />
-                <CardMedia component="img" height="200" image="/noPhoto.jpg" alt="Descripción de la imagen" />
+        <div className={CSS.container}>
+            <Card className={CSS.card}>
+                <CardHeader className={CSS.textColor} title={title} />
+                <CardMedia component="img" height="200" image={image ? image : '/noPhoto.jpg'} alt="Descripción de la imagen" />
                 <CardContent>
-                    <Typography sx={{color: 'white'}} className={CSS.description} variant="body2" color="text.secondary">
-                        Aquí va la descripción del Card. Puedes agregar texto o cualquier otro contenido aquí.
+                    <Typography className={CSS.description} variant="body2" color="text.secondary">
+                        {description}
                     </Typography>
-                    <Typography sx={{color: 'white'}} className={CSS.author} variant="body2" color="black">
-                        <RestaurantMenuIcon className={CSS.iconAuthor} />Manuel Jesús Curtido Rosado
+                    <Typography className={CSS.author} variant="body2" color="black">
+                        <RestaurantMenuIcon className={CSS.iconAuthor} />
+                        {author}
+                        <Rating
+                            className={CSS.marginLeft}
+                            name="read-only"
+                            icon={<LunchDiningIcon fontSize="inherit" />}
+                            emptyIcon={<LunchDiningIcon fontSize="inherit" />}
+                            value={valuation}
+                            precision={0.5}
+                            readOnly
+                        />
                     </Typography>
                 </CardContent>
             </Card>
@@ -22,5 +35,3 @@ const RecipeCard = ({title, image, description, author, valuation}) => {
 };
 
 export default RecipeCard;
-
-//TODO: esto está por terminar

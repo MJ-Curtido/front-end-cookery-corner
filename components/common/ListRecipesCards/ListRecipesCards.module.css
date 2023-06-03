@@ -5,6 +5,20 @@
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 77px;
-}
 
-/*TODO: Ésto está por terminar*/
+    @media (max-width: 1200px) {
+        width: 992px;
+    }
+
+    @media (max-width: 992px) {
+        width: 768px;
+    }
+
+    @media (max-width: 768px) {
+        width: 576px;
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;
+    }
+}

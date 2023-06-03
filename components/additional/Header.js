@@ -1,7 +1,9 @@
+//#region Imports
 import { AppBar, Avatar, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import CSS from './Header.module.css';
+//#endregion
 
 const Header = () => {
     return (

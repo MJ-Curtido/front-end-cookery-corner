@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+//#region Imports
+import React from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import CSS from './ListRecipesCards.module.css';
+//#endregion
 
 const ListRecipesCards = ({ recipes }) => {
-    const [recipesList, setRecipesList] = useState(recipes);
-
     return (
         <div className={CSS.container}>
-            {recipesList.map((recipe) => (
+            {recipes.map((recipe) => (
                 <RecipeCard
                     key={recipe._id}
                     title={recipe.title}
@@ -17,21 +17,8 @@ const ListRecipesCards = ({ recipes }) => {
                     valuation={recipe.valuation}
                 />
             ))}
-
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
         </div>
     );
 };
 
 export default ListRecipesCards;
-
-//TODO: esto está por terminar

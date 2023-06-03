@@ -1,7 +1,9 @@
+//#region Imports
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import FormLogin from '@/components/loginPage/FormLogin';
 import Cookies from 'universal-cookie';
+//#endregion
 
 export default function Home() {
     const router = useRouter();
