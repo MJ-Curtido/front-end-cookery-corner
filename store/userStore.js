@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 export const userStore = create(
     persist(
@@ -26,7 +29,7 @@ export const userStore = create(
 
                     set({ user: data.user });
 
-                    localStorage.setItem('token', data.token);
+                    cookies.set('token', data.token, { expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)});
                 } catch (error) {
                     if (error.status) {
                         throw error;
@@ -55,7 +58,7 @@ export const userStore = create(
 
                     set({ user: data.user });
 
-                    localStorage.setItem('token', data.token);
+                    cookies.set('token', data.token, { expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)});
                 } catch (error) {
                     if (error.status) {
                         throw error;
@@ -71,7 +74,7 @@ export const userStore = create(
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                            Authorization: `Bearer ${cookies.get('token')}`,
                         },
                     });
 
@@ -82,7 +85,7 @@ export const userStore = create(
 
                     set({ user: null });
 
-                    localStorage.removeItem('token');
+                    cookies.remove('token');
                 } catch (error) {
                     if (error.status) {
                         throw error;
@@ -98,7 +101,7 @@ export const userStore = create(
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                            Authorization: `Bearer ${cookies.get('token')}`,
                         },
                     });
 
@@ -140,7 +143,7 @@ export const userStore = create(
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                            Authorization: `Bearer ${cookies.get('token')}`,
                         },
                         body: JSON.stringify(requestData),
                     });
@@ -168,7 +171,7 @@ export const userStore = create(
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
-                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                            Authorization: `Bearer ${cookies.get('token')}`,
                         },
                     });
 
@@ -179,7 +182,7 @@ export const userStore = create(
 
                     set({ user: null });
 
-                    localStorage.removeItem('token');
+                    cookies.remove('token');
                 } catch (error) {
                     if (error.status) {
                         throw error;
