@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import Cookies from 'universal-cookie';
 
 const AuthGuard = ({ children }) => {
     const router = useRouter();
+    const cookies = new Cookies();
 
     useEffect(() => {
-        if (!localStorage.getItem('token') || !localStorage.getItem('my-app-storage')) {
+        if (!cookies.get('token')) {
             router.push('/');
         }
     }, []);

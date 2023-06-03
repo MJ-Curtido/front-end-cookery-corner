@@ -1,12 +1,15 @@
+//#region Imports
 import { Alert, Avatar, Box, Button, CssBaseline, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 import CSS from './FormLogin.module.css';
 import { userStore } from '@/store/userStore';
+//#endregion
 
 const FormLogin = () => {
+    //#region Elements
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [messageSnackbar, setMessageSnackbar] = useState('');
@@ -14,17 +17,13 @@ const FormLogin = () => {
     const router = useRouter();
 
     const login = userStore((state) => state.login);
+    //#endregion
 
+    //#region Functions
     const validationSchema = yup.object().shape({
         email: yup.string().email('Enter a valid email.').required('Email is required.'),
         password: yup.string().min(7, 'Password must include at least 8 characters.').required('Password is required.'),
     });
-
-    useEffect(() => {
-        if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
-            router.push('/');
-        }
-    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -95,6 +94,7 @@ const FormLogin = () => {
                 }
             });
     };
+    //#endregion
 
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>

@@ -1,3 +1,4 @@
+//#region Imports
 import { Alert, Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -5,8 +6,10 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import CSS from './FormRegister.module.css';
 import { userStore } from '@/store/userStore';
+//#endregion
 
 const FormRegister = () => {
+    //#region Elements
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [messageSnackbar, setMessageSnackbar] = useState('');
@@ -14,7 +17,9 @@ const FormRegister = () => {
     const router = useRouter();
 
     const signin = userStore((state) => state.signin);
+    //#endregion
 
+    //#region Functions
     const validationSchema = yup.object().shape({
         name: yup.string().required('Name is required.'),
         email: yup.string().email('Enter a valid email.').required('Email is required.'),
@@ -101,6 +106,7 @@ const FormRegister = () => {
                 }
             });
     };
+    //#endregion
 
     return (
         <>
