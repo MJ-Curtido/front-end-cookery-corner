@@ -30,3 +30,4 @@ export default function SearchBar() {
         </Container>
     );
 }
+//TODO: esto está por terminar

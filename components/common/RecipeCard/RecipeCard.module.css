@@ -1,0 +1,17 @@
+.author {
+    align-items: center;
+    display: flex;
+}
+
+.description {
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.iconAuthor {
+    margin-right: 7px;
+}
+
+/*Ésto está por terminar*/

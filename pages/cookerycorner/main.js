@@ -1,18 +1,40 @@
 import React from 'react';
-import store from '@/store/store';
-import { userStore } from '@/store/userStore';
 import AuthGuard from '@/components/additional/AuthGuard';
+import SearchBar from '@/components/common/SearchBar/SearchBar';
+import Layout from '@/components/additional/Layout';
+import ListRecipesCards from '@/components/common/ListRecipesCards/ListRecipesCards';
+import { recipesAvailable } from '@/api/recipePetitions';
 
-const MainPage = () => {
-    const user = store(userStore, (state) => state.user);
-
+const Main = ({ recipes }) => {
     return (
-        <>
-            <AuthGuard>
-               <h1>{user && user.name}</h1> 
-            </AuthGuard>
-        </>
+        <AuthGuard>
+            <Layout>
+                <SearchBar />
+
+                <ListRecipesCards recipes={recipes} />
+            </Layout>
+        </AuthGuard>
     );
 };
 
-export default MainPage;
+export async function getServerSideProps() {
+    // try {
+    //     const recipes = await recipesAvailable(1);
+
+    //     return {
+    //         props: {
+    //             recipes,
+    //         },
+    //     };
+    // } catch (error) {
+        return {
+            props: {
+                recipes: [],
+            },
+        };
+    // }
+}
+
+export default Main;
+
+//TODO: esto está por terminar
