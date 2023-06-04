@@ -3,11 +3,9 @@ import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import CSS from './SearchBar.module.css';
 
-export default function SearchBar() {
-    const [searchTerm, setSearchTerm] = useState('');
-
+export default function SearchBar({ onSearch }) {
     const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+        onSearch(event.target.value);
     };
 
     return (
@@ -17,7 +15,6 @@ export default function SearchBar() {
                 id="search"
                 type="search"
                 label="Search"
-                value={searchTerm}
                 onChange={handleChange}
                 InputProps={{
                     endAdornment: (
@@ -30,4 +27,3 @@ export default function SearchBar() {
         </Container>
     );
 }
-//TODO: esto está por terminar
