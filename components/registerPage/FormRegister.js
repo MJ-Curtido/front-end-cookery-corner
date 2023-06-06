@@ -1,5 +1,5 @@
 //#region Imports
-import { Alert, Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
+import { Alert, Avatar, Box, Button, CssBaseline, Grid, Paper, Snackbar, TextField, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useState } from 'react';

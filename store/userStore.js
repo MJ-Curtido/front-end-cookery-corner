@@ -27,9 +27,9 @@ export const userStore = create(
                     }
                     const data = await response.json();
 
-                    set({ user: data.user });
-
                     cookies.set('token', data.token, { expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)});
+
+                    set({ user: data.user });
                 } catch (error) {
                     if (error.status) {
                         throw error;
@@ -56,9 +56,9 @@ export const userStore = create(
 
                     const data = await response.json();
 
-                    set({ user: data.user });
-
                     cookies.set('token', data.token, { expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)});
+                    
+                    set({ user: data.user });
                 } catch (error) {
                     if (error.status) {
                         throw error;

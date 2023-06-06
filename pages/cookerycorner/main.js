@@ -99,11 +99,12 @@ export async function getServerSideProps({ req }) {
     try {
         const token = req.cookies.token;
         const obj = await recipesAvailable(1, token);
-
+        const pages = Math.ceil(obj.totalRecipes / 10);
+        
         return {
             props: {
                 recipes: obj.recipes,
-                pages: Math.ceil(obj.totalRecipes / 10),
+                pages: pages,
             },
         };
     } catch (error) {

@@ -1,17 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const Recipe = () => {
+const User = () => {
     const router = useRouter();
-
-    const { idrecipe } = router.query;
+    const { iduser } = router.query;
 
     return (
         <div>
-            <h1>Recipe</h1>
-            <p>Recipe ID: {idrecipe}</p>
+            <h1>User</h1>
+            <p>User ID: {iduser}</p>
         </div>
     );
 };
 
-export default Recipe;
+export default User;

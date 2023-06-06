@@ -1,6 +1,6 @@
 //#region Imports
 import { useRouter } from 'next/router';
-import { Card, CardHeader, CardMedia, CardContent, Rating, Typography } from '@mui/material';
+import { Card, CardHeader, CardMedia, CardContent, Rating, Typography, Tooltip } from '@mui/material';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import CSS from './RecipeCard.module.css';
@@ -16,13 +16,14 @@ const RecipeCard = ({ id, title, image, description, author, valuation }) => {
                     onClick={() => {
                         router.push(`/cookerycorner/recipe/${id}`);
                     }}
-                    className={CSS.textColor}
+                    className={CSS.titleCard}
                     title={title}
                 />
                 <CardMedia
                     onClick={() => {
                         router.push(`/cookerycorner/recipe/${id}`);
                     }}
+                    className={CSS.imgCard}
                     component="img"
                     height="200"
                     image={image ? image : '/noPhoto.jpg'}
@@ -33,13 +34,15 @@ const RecipeCard = ({ id, title, image, description, author, valuation }) => {
                         {description}
                     </Typography>
                     <Typography className={CSS.author} variant="body2" color="black">
-                        <RestaurantMenuIcon
-                            onClick={() => {
-                                router.push('/kasjdfkjasdf');
-                            }}
-                            className={CSS.iconAuthor}
-                        />
-                        {author}
+                        <Tooltip title="View profile" placement="bottom">
+                            <RestaurantMenuIcon
+                                onClick={() => {
+                                    router.push(`/cookerycorner/user/${author._id}`);
+                                }}
+                                className={CSS.iconAuthor}
+                            />
+                        </Tooltip>
+                        {author.name}
                         <Rating
                             className={CSS.marginLeft}
                             name="read-only"

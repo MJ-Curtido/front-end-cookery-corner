@@ -11,7 +11,7 @@ const Footer = () => {
         <footer className={CSS.footer}>
             <Container maxWidth="lg">
                 <div className={CSS.textContainer}>
-                    <Typography variant="body1">
+                    <Typography variant="body1" className={CSS.description}>
                         Cookery Corner is a culinary website where food enthusiasts can explore and discover a wide variety of recipes. Whether you're a seasoned chef or
                         a beginner in the kitchen, Cookery Corner offers a platform to learn and share your favorite recipes with the community. From appetizers to
                         desserts, our collection of diverse recipes will inspire you to unleash your culinary creativity. Join us at Cookery Corner and embark on a
@@ -19,6 +19,10 @@ const Footer = () => {
                     </Typography>
                     <Typography variant="body1" className={CSS.authorText}>
                         &copy; {new Date().getFullYear()} Manuel Jesús Curtido Rosado
+                    </Typography>
+
+                    <Typography variant="body1" className={CSS.authorText}>
+                        <Link href="https://api.whatsapp.com/send?phone=NUMERO&text=MENSAJE" target="_blank" rel="noopener noreferrer">Enlace de WhatsApp</Link>
                     </Typography>
                 </div>
             </Container>

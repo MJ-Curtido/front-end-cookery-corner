@@ -34,12 +34,18 @@
 
 .iconAuthor {
     margin-right: 7px;
+    cursor: pointer;
+}
+
+.imgCard {
+    cursor: pointer;
 }
 
 .marginLeft {
     margin-left: auto;
 }
 
-.textColor {
+.titleCard {
     color: white;
+    cursor: pointer;
 }
