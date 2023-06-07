@@ -1,0 +1,58 @@
+.author {
+    align-items: center;
+    display: flex;
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 20px;
+    font-size: medium;
+}
+
+.container {
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 77px;
+
+    @media (max-width: 1200px) {
+        width: 992px;
+    }
+
+    @media (max-width: 992px) {
+        width: 768px;
+    }
+
+    @media (max-width: 768px) {
+        width: 576px;
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;
+    }
+}
+
+.iconAuthor {
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.valuation {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.title {
+    text-align: center;
+    margin: 40px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description {
+    text-align: justify;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-size: large;
+}

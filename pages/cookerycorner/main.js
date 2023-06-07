@@ -36,7 +36,6 @@ const Main = ({ recipes, pages }) => {
     };
 
     const paginationHandler = (event, value) => {
-        console.log('value', value);
         setPage(value);
     };
 
@@ -79,7 +78,7 @@ const Main = ({ recipes, pages }) => {
                 )}
 
                 <div style={CSS.paginationDiv}>
-                    <Pagination count={totalPages} color="primary" variant="outlined" shape="rounded" onChange={paginationHandler} />
+                    <Pagination count={totalPages} color="secondary" variant="outlined" shape="rounded" onChange={paginationHandler} />
                 </div>
             </Layout>
         </AuthGuard>
@@ -97,7 +96,7 @@ const CSS = {
 
 export async function getServerSideProps({ req }) {
     try {
-        const token = req.cookies.token;
+        const token = req.headers.cookie.split('=')[1] ? req.headers.cookie.split('=')[1] : req.cookies.token ? req.cookies.token : null;
         const obj = await recipesAvailable(1, token);
         const pages = Math.ceil(obj.totalRecipes / 10);
         

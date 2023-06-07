@@ -133,6 +133,7 @@ const FormLogin = () => {
                     </Typography>
                     <Box component="form" noValidate onChange={validateForm} onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
                         <TextField
+                            color='secondary'
                             margin="normal"
                             required
                             fullWidth
@@ -145,6 +146,7 @@ const FormLogin = () => {
                             helperText={errors.email}
                         />
                         <TextField
+                            color='secondary'
                             margin="normal"
                             required
                             fullWidth
@@ -156,7 +158,7 @@ const FormLogin = () => {
                             error={!!errors.password}
                             helperText={errors.password}
                         />
-                        <Button className={CSS.btn} type="submit" fullWidth variant="contained">
+                        <Button color='secondary' className={CSS.btn} type="submit" fullWidth variant="contained">
                             Log In
                         </Button>
                         <Grid container>

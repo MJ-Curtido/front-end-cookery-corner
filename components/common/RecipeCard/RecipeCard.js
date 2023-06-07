@@ -44,7 +44,7 @@ const RecipeCard = ({ id, title, image, description, author, valuation }) => {
                         </Tooltip>
                         {author.name}
                         <Rating
-                            className={CSS.marginLeft}
+                            className={CSS.valuation}
                             name="read-only"
                             icon={<LunchDiningIcon fontSize="inherit" />}
                             emptyIcon={<LunchDiningIcon fontSize="inherit" />}

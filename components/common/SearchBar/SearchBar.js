@@ -10,6 +10,7 @@ export default function SearchBar({ onSearch }) {
     return (
         <Container maxWidth="lg" className={CSS.container}>
             <TextField
+                color="secondary"
                 className={CSS.searchBar}
                 id="search"
                 type="search"

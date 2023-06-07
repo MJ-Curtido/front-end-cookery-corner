@@ -146,6 +146,7 @@ const FormRegister = () => {
                         </Typography>
                         <Box component="form" noValidate onChange={validateForm} onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
                             <TextField
+                                color='secondary'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -158,6 +159,7 @@ const FormRegister = () => {
                                 helperText={errors.name}
                             />
                             <TextField
+                                color='secondary'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -170,6 +172,7 @@ const FormRegister = () => {
                                 helperText={errors.email}
                             />
                             <TextField
+                                color='secondary'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -182,6 +185,7 @@ const FormRegister = () => {
                                 helperText={errors.password}
                             />
                             <TextField
+                                color='secondary'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -194,6 +198,7 @@ const FormRegister = () => {
                                 helperText={errors.password2}
                             />
                             <TextField
+                                color='secondary'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -205,7 +210,7 @@ const FormRegister = () => {
                                 error={!!errors.phone}
                                 helperText={errors.phone}
                             />
-                            <Button className={CSS.btn} type="submit" fullWidth variant="contained">
+                            <Button color='secondary' className={CSS.btn} type="submit" fullWidth variant="contained">
                                 Sign up
                             </Button>
                             <Grid container>

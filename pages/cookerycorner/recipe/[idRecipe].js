@@ -1,23 +1,27 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getRecipe } from '@/api/recipePetitions';
+import RecipeDetail from '@/components/recipePage/RecipeDetail';
+import Layout from '@/components/additional/Layout';
+import AuthGuard from '@/components/additional/AuthGuard';
 
 const Recipe = ({ recipe }) => {
-    console.log(recipe);
     const router = useRouter();
 
     useEffect(() => {
         if (!recipe) {
-            console.log('No recipe');
             router.push('/cookerycorner/main');
         }
     }, []);
 
     return (
-        <div>
-            <h1>Recipe</h1>
-            <p>Recipe ID: {recipe ? recipe.title : ''}</p>
-        </div>
+        recipe && (
+            <AuthGuard>
+                <Layout>
+                    <RecipeDetail recipe={recipe} />
+                </Layout>
+            </AuthGuard>
+        )
     );
 };
 
