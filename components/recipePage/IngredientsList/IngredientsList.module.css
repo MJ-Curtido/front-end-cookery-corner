@@ -25,15 +25,9 @@
 
 .ingredient {
     text-align: center;
-}
-
-.list {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 77px;
+    background-color: #ebcded;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .nameIng {

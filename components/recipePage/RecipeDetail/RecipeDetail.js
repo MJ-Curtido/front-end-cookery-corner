@@ -4,7 +4,7 @@ import React from 'react';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import CarouselCustom from '../CarouselCustom';
+import CarouselCustom from '../CarouselCustom/CarouselCustom';
 import CSS from './RecipeDetail.module.css';
 //#endregion
 
@@ -17,7 +17,7 @@ const RecipeDetail = ({ recipe, scrollToBottom }) => {
                 {recipe.title}
             </Typography>
 
-            <CarouselCustom stuff={recipe.images} />
+            <CarouselCustom stuff={recipe.images.length !== 0 ? recipe.images : ['/noPhoto.jpg']} />
 
             <Typography className={CSS.author} variant="overline" color="black">
                 <Tooltip title="View profile" placement="bottom">

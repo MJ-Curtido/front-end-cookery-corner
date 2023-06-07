@@ -3,6 +3,7 @@ import { Container } from '@mui/material';
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import CSS from './CarouselCustom.module.css';
 //#endregion
 
 const CarouselCustom = ({ stuff }) => {
@@ -10,7 +11,7 @@ const CarouselCustom = ({ stuff }) => {
         <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false} showArrows={true} interval={5000}>
             {stuff.map((img, index) => (
                 <Container key={index}>
-                    <img src={img} />
+                    <img className={CSS.carousel} src={img} alt={`Carousel Image ${index}`} />
                 </Container>
             ))}
         </Carousel>

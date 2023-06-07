@@ -34,13 +34,13 @@ const Recipe = ({ recipe }) => {
                 <Layout>
                     <RecipeDetail recipe={recipe} scrollToBottom={scrollToBottom} />
 
-                    <Divider />
+                    <Divider variant='middle' />
 
                     <IngredientsList ingredients={recipe.ingredients} />
 
-                    <Divider />
+                    <Divider variant='middle' />
 
-                    
+
                 </Layout>
             </AuthGuard>
         )
