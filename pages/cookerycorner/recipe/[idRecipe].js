@@ -1,12 +1,21 @@
-import React, { useEffect } from 'react';
+//#region Imports
+import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { getRecipe } from '@/api/recipePetitions';
-import RecipeDetail from '@/components/recipePage/RecipeDetail';
+import RecipeDetail from '@/components/recipePage/RecipeDetail/RecipeDetail';
 import Layout from '@/components/additional/Layout';
 import AuthGuard from '@/components/additional/AuthGuard';
+import { Divider } from '@mui/material';
+import IngredientsList from '@/components/recipePage/IngredientsList/IngredientsList';
+//#endregion
 
 const Recipe = ({ recipe }) => {
     const router = useRouter();
+    const reviews = useRef('reviews');
+
+    // <div>
+    //     <button ref={reviews}>yujuu</button>
+    // </div>;
 
     useEffect(() => {
         if (!recipe) {
@@ -14,11 +23,24 @@ const Recipe = ({ recipe }) => {
         }
     }, []);
 
+    const scrollToBottom = () => {
+        console.log(reviews.current);
+        reviews.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         recipe && (
             <AuthGuard>
                 <Layout>
-                    <RecipeDetail recipe={recipe} />
+                    <RecipeDetail recipe={recipe} scrollToBottom={scrollToBottom} />
+
+                    <Divider />
+
+                    <IngredientsList ingredients={recipe.ingredients} />
+
+                    <Divider />
+
+                    
                 </Layout>
             </AuthGuard>
         )
