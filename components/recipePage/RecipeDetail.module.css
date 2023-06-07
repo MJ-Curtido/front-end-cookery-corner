@@ -8,6 +8,17 @@
     font-size: medium;
 }
 
+.buy {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+.buy .button {
+    margin-left: 20px;
+}
+
 .container {
     width: 1200px;
     display: flex;
@@ -41,6 +52,7 @@
 .valuation {
     margin-left: auto;
     margin-right: 0;
+    cursor: pointer;
 }
 
 .title {
