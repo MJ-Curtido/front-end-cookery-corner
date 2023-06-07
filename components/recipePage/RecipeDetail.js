@@ -1,3 +1,4 @@
+//#region Imports
 import { Typography, Tooltip, Rating, Button, Divider } from '@mui/material';
 import React from 'react';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
@@ -5,6 +6,9 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CarouselCustom from './CarouselCustom';
 import CSS from './RecipeDetail.module.css';
+//#endregion
+
+//TODO: Hacer que cuando le de a comprar, salga un modal y te ponga los datos necesarios para comprarlo
 
 const RecipeDetail = ({ recipe, scrollToBottom }) => {
     return (

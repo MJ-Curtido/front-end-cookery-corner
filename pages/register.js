@@ -1,7 +1,7 @@
 //#region Imports
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import FormRegister from '@/components/registerPage/FormRegister';
+import FormRegister from '@/components/registerPage/FormRegister/FormRegister';
 import Cookies from 'universal-cookie';
 //#endregion
 
