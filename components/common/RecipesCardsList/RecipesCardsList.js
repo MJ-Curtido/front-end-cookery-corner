@@ -1,7 +1,7 @@
 //#region Imports
 import React from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
-import CSS from './ListRecipesCards.module.css';
+import CSS from './RecipesCardsList.module.css';
 //#endregion
 
 const ListRecipesCards = ({ recipes }) => {

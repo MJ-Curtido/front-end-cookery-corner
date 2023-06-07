@@ -4,7 +4,7 @@ import React from 'react';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import CarouselCustom from './CarouselCustom';
+import CarouselCustom from '../CarouselCustom';
 import CSS from './RecipeDetail.module.css';
 //#endregion
 
