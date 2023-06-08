@@ -8,17 +8,11 @@
     margin-right: 17px;
 }
 
-.iconAdd {
-    margin-right: 17px;
-    width: 17px;
-    height: auto;
-}
-
 .iconProfile {
     margin-left: 17px;
 }
 
-.iconPurchased {
+.icons {
     color: white;
     margin: auto 17px auto 17px;
     display: flex;

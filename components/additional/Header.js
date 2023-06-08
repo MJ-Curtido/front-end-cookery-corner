@@ -3,6 +3,7 @@ import { AppBar, Avatar, Toolbar, Typography, Tooltip } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import store from '@/store/store';
 import { userStore } from '@/store/userStore';
 import CSS from './Header.module.css';
@@ -28,13 +29,13 @@ const Header = () => {
 
                 <Link href="/cookerycorner/">
                     <Tooltip title="Create recipe" placement="bottom">
-                        <Avatar className={CSS.iconAdd} alt="Icon" src="/iconAdd.png" />
+                        <PlaylistAddIcon className={CSS.icons} />
                     </Tooltip>
                 </Link>
 
                 <Link href="/cookerycorner/purchased">
                     <Tooltip title="Purchased recipes" placement="bottom">
-                        <LocalAtmIcon className={CSS.iconPurchased} />
+                        <LocalAtmIcon className={CSS.icons} />
                     </Tooltip>
                 </Link>
 
