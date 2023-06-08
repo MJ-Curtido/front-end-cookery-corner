@@ -4,6 +4,7 @@ import React from 'react';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useRouter } from 'next/router';
 import CarouselCustom from '../CarouselCustom/CarouselCustom';
 import CSS from './RecipeDetail.module.css';
 //#endregion
@@ -11,6 +12,8 @@ import CSS from './RecipeDetail.module.css';
 //TODO: Hacer que cuando le de a comprar, salga un modal y te ponga los datos necesarios para comprarlo
 
 const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom }) => {
+    const router = useRouter();
+
     return (
         <div className={CSS.container}>
             <Typography className={CSS.title} variant="h1">
@@ -23,7 +26,7 @@ const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom }) => {
                 <Tooltip title="View profile" placement="bottom">
                     <RestaurantMenuIcon
                         onClick={() => {
-                            router.push(`/cookerycorner/user/${author._id}`);
+                            router.push(`/cookerycorner/user/${recipe.author._id}`);
                         }}
                         className={CSS.iconAuthor}
                         fontSize="large"

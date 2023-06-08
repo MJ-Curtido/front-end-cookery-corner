@@ -14,6 +14,12 @@
     padding: 24px 16px;
 }
 
+.support {
+    color: blueviolet;
+    text-decoration-color: rgb(100, 31, 164);
+    text-decoration: none;
+}
+
 .textContainer {
     align-items: center;
     display: flex;

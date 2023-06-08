@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CSS from './ReviewsList.module.css';
-import { getRecipe, pushReview } from '@/api/recipePetitions';
+import { pushReview } from '@/api/recipePetitions';
 import store from '@/store/store';
 import { userStore } from '@/store/userStore';
 //#endregion

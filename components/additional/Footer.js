@@ -1,5 +1,6 @@
 //#region Imports
 import React from 'react';
+import { isMobileOnly } from 'react-device-detect';
 import { Container, Link, Typography } from '@mui/material';
 import CSS from './Footer.module.css';
 //#endregion
@@ -7,6 +8,8 @@ import CSS from './Footer.module.css';
 //TODO: Añadir lo que está abajo comentado pero añadiendo mi número de teléfono y mi correo y que el número te lleve a mi whatsapp
 
 const Footer = () => {
+    const textWhatsapp = 'Hola, me gustaría contactar contigo para hablar sobre Cookery Corner.';
+
     return (
         <footer className={CSS.footer}>
             <Container maxWidth="lg">
@@ -22,7 +25,7 @@ const Footer = () => {
                     </Typography>
 
                     <Typography variant="body1" className={CSS.authorText}>
-                        <Link href="https://api.whatsapp.com/send?phone=NUMERO&text=MENSAJE" target="_blank" rel="noopener noreferrer">Enlace de WhatsApp</Link>
+                        <Link className={CSS.support} href={`https://${isMobileOnly ? 'api' : 'web'}.whatsapp.com/send?phone=+34610925034&text=${textWhatsapp}`}>Customer Support</Link>
                     </Typography>
                 </div>
             </Container>
