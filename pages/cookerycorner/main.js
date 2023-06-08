@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import AuthGuard from '@/components/additional/AuthGuard';
 import SearchBar from '@/components/common/SearchBar/SearchBar';
 import Layout from '@/components/additional/Layout';
-import ListRecipesCards from '@/components/common/RecipesCardsList/RecipesCardsList';
+import RecipesCardsList from '@/components/common/RecipesCardsList/RecipesCardsList';
 import { recipesAvailable, searchRecipes } from '@/api/recipePetitions';
 import Cookies from 'universal-cookie';
 import { Pagination, Typography } from '@mui/material';
@@ -74,7 +74,7 @@ const Main = ({ recipes, pages }) => {
                         No recipes found.
                     </Typography>
                 ) : (
-                    <ListRecipesCards recipes={recipesList} />
+                    <RecipesCardsList recipes={recipesList} />
                 )}
 
                 <div style={CSS.paginationDiv}>

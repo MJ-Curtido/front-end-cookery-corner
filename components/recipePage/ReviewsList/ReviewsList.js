@@ -31,8 +31,6 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
     const handleSubmit = async (e) => {
         if (comment !== '') {
             e.preventDefault();
-            console.log('Comentario:', comment);
-            console.log('Calificación:', rating);
 
             const review = {
                 reviews: {
@@ -77,7 +75,7 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
                     <form className={CSS.formReview} onSubmit={handleSubmit}>
                         <TextField
                             className={CSS.comment}
-                            label="Escribe tu comentario aquí"
+                            label="Write your comment here..."
                             value={comment}
                             onChange={handleCommentChange}
                             multiline
@@ -102,7 +100,7 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
                             />
 
                             <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
-                                Enviar
+                                Send review
                             </Button>
                         </div>
                     </form>

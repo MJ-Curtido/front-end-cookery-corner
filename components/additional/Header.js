@@ -11,7 +11,6 @@ import CSS from './Header.module.css';
 
 const Header = () => {
     const user = store(userStore, (state) => state.user);
-    console.log(user);
 
     return (
         <AppBar className={CSS.header}>

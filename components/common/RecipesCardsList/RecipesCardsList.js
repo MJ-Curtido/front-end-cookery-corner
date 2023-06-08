@@ -4,7 +4,7 @@ import RecipeCard from '../RecipeCard/RecipeCard';
 import CSS from './RecipesCardsList.module.css';
 //#endregion
 
-const ListRecipesCards = ({ recipes }) => {
+const RecipesCardsList = ({ recipes }) => {
     return (
         <div className={CSS.container}>
             {recipes.map((recipe) => (
@@ -22,4 +22,4 @@ const ListRecipesCards = ({ recipes }) => {
     );
 };
 
-export default ListRecipesCards;
+export default RecipesCardsList;
