@@ -67,6 +67,10 @@ const Main = ({ recipes, pages }) => {
     return (
         <AuthGuard>
             <Layout>
+                <Typography style={CSS.title} variant="h1">
+                    All recipes
+                </Typography>
+
                 <SearchBar onSearch={search} />
 
                 {recipesList.length === 0 ? (
@@ -92,6 +96,14 @@ const CSS = {
         alignItems: 'center',
         marginBottom: '70px',
     },
+    title: {
+        width: '100%',
+        textAlign: 'center',
+        margin: '40px 0',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontSize: '60px',
+    },
 };
 
 export async function getServerSideProps({ req }) {
@@ -99,7 +111,7 @@ export async function getServerSideProps({ req }) {
         const token = req.headers.cookie.split('=')[1] ? req.headers.cookie.split('=')[1] : req.cookies.token ? req.cookies.token : null;
         const obj = await recipesAvailable(1, token);
         const pages = Math.ceil(obj.totalRecipes / 10);
-        
+
         return {
             props: {
                 recipes: obj.recipes,
