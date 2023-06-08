@@ -5,8 +5,6 @@ import { Container, Link, Typography } from '@mui/material';
 import CSS from './Footer.module.css';
 //#endregion
 
-//TODO: Añadir lo que está abajo comentado pero añadiendo mi número de teléfono y mi correo y que el número te lleve a mi whatsapp
-
 const Footer = () => {
     const textWhatsapp = 'Hola, me gustaría contactar contigo para hablar sobre Cookery Corner.';
 

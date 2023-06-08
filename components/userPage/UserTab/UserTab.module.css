@@ -1,0 +1,12 @@
+.container {
+    background-color: #424242;
+}
+
+.tab {
+    background-color: white;
+    width: 200px;
+
+    @media screen and (max-width: 576px) {
+        width: 150px;
+    }
+}

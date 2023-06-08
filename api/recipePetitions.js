@@ -135,9 +135,36 @@ export const pushReview = async (idRecipe, review, token) => {
     }
 };
 
-export const getRecipesByUser = async (idUser, page, token) => {
+export const getRecipesByUserValuation = async (page, idUser, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/user/${idUser}?page=${page}`, {
+        const response = await fetch(`http://127.0.0.1:3007/recipes/user/valuation/${idUser}?page=${page}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw { message: errorData.error, status: response.status };
+        }
+
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        if (error.status) {
+            throw error;
+        } else {
+            throw { message: 'There is something wrong.', status: 500 };
+        }
+    }
+};
+
+export const getRecipesByUserDate = async (page, idUser, token) => {
+    try {
+        const response = await fetch(`http://127.0.0.1:3007/recipes/user/date/${idUser}?page=${page}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

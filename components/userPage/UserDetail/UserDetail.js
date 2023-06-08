@@ -2,11 +2,10 @@
 import React from 'react';
 import CSS from './UserDetail.module.css';
 import { Typography } from '@mui/material';
+import UserTab from '../UserTab/UserTab';
 //#endregion
 
-//TODO: Añadir un Select para cambiar si mostrar ordenado por fecha o por valorción
-
-const UserDetail = ({ user }) => {
+const UserDetail = ({ user, onOrderByValuation, onOrderByDate }) => {
     return (
         <div className={CSS.container}>
             <Typography className={CSS.title} variant="h1">
@@ -14,8 +13,10 @@ const UserDetail = ({ user }) => {
             </Typography>
 
             <Typography className={CSS.subtitle} variant="h2">
-                Recipes:
+                Recipes order by:
             </Typography>
+
+            <UserTab onOrderByValuation={onOrderByValuation} onOrderByDate={onOrderByDate} />
         </div>
     );
 };
