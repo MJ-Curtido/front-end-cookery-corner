@@ -1,17 +1,26 @@
 //#region Imports
-import { Button, List, ListItem, ListItemText, Rating, TextField, Tooltip, Typography } from '@mui/material';
+import { Alert, Button, List, ListItem, ListItemText, Rating, Snackbar, TextField, Tooltip, Typography } from '@mui/material';
 import React, { Fragment, useState } from 'react';
 import { useRouter } from 'next/router';
+import Cookies from 'universal-cookie';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CSS from './ReviewsList.module.css';
+import { getRecipe, pushReview } from '@/api/recipePetitions';
+import store from '@/store/store';
+import { userStore } from '@/store/userStore';
 //#endregion
 
-const ReviewsList = ({ reviews, bought, isMine }) => {
+const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
     //#region Elements
     const router = useRouter();
+    const cookies = new Cookies();
     const [comment, setComment] = useState('');
+    const [messageSnackbar, setMessageSnackbar] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
     const [rating, setRating] = React.useState(0);
+    const [severitySnackbar, setSeveritySnackbar] = useState('success');
+    const user = store(userStore, (state) => state.user);
     //#endregion
 
     //#region Functions
@@ -19,22 +28,53 @@ const ReviewsList = ({ reviews, bought, isMine }) => {
         setComment(event.target.value);
     };
 
-    const handleSubmit = () => {
-        // Lógica para enviar el comentario y la calificación
-        console.log('Comentario:', comment);
-        console.log('Calificación:', rating);
+    const handleSubmit = async (e) => {
+        if (comment !== '') {
+            e.preventDefault();
+            console.log('Comentario:', comment);
+            console.log('Calificación:', rating);
+
+            const review = {
+                reviews: {
+                    text: comment,
+                    valuation: rating,
+                    user: user._id,
+                },
+            };
+
+            try {
+                await pushReview(idRecipe, review, cookies.get('token'));
+
+                updateRecipe();
+
+                setComment('');
+                setRating(0);
+
+                setMessageSnackbar('Review sent.');
+                setSeveritySnackbar('success');
+                setOpenSnackbar(true);
+            } catch (error) {
+                setMessageSnackbar('Error sending review.');
+                setSeveritySnackbar('error');
+                setOpenSnackbar(true);
+            }
+        }
     };
     //#endregion
 
     return (
         <div className={CSS.container}>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+                <Alert severity={severitySnackbar}>{messageSnackbar}</Alert>
+            </Snackbar>
+
             <Typography className={CSS.title} variant="h3" align="center" gutterBottom>
                 Reviews
             </Typography>
 
             {bought && !isMine && (
                 <div className={CSS.containerForm}>
-                    <div className={CSS.formReview}>
+                    <form className={CSS.formReview} onSubmit={handleSubmit}>
                         <TextField
                             className={CSS.comment}
                             label="Escribe tu comentario aquí"
@@ -43,7 +83,9 @@ const ReviewsList = ({ reviews, bought, isMine }) => {
                             multiline
                             rows={4}
                             variant="outlined"
+                            color="secondary"
                             fullWidth
+                            required
                         />
 
                         <div className={CSS.valuationBotton}>
@@ -59,11 +101,11 @@ const ReviewsList = ({ reviews, bought, isMine }) => {
                                 }}
                             />
 
-                            <Button className={CSS.button} variant="contained" color="primary" onClick={handleSubmit}>
+                            <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
                                 Enviar
                             </Button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             )}
 
