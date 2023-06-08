@@ -1,7 +1,7 @@
 //#region Imports
 import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { getRecipe } from '@/api/recipePetitions';
+import { getIsMine, getRecipe } from '@/api/recipePetitions';
 import RecipeDetail from '@/components/recipePage/RecipeDetail/RecipeDetail';
 import Layout from '@/components/additional/Layout';
 import AuthGuard from '@/components/additional/AuthGuard';
@@ -9,15 +9,12 @@ import { Divider, Typography } from '@mui/material';
 import IngredientsList from '@/components/recipePage/IngredientsList/IngredientsList';
 import StepsList from '@/components/recipePage/StepsList/StepsList';
 import { getIsBought } from '@/api/purchasePetitions';
+import ReviewsList from '@/components/recipePage/ReviewsList/ReviewsList';
 //#endregion
 
-const Recipe = ({ recipe, bought }) => {
+const Recipe = ({ recipe, bought, isMine }) => {
     const router = useRouter();
     const reviews = useRef('reviews');
-
-    // <div>
-    //     <button ref={reviews}>yujuu</button>
-    // </div>;
 
     useEffect(() => {
         if (!recipe) {
@@ -34,11 +31,11 @@ const Recipe = ({ recipe, bought }) => {
         recipe && (
             <AuthGuard>
                 <Layout>
-                    <RecipeDetail recipe={recipe} scrollToBottom={scrollToBottom} />
+                    <RecipeDetail bought={bought} recipe={recipe} isMine={isMine} scrollToBottom={scrollToBottom} />
 
                     <Divider variant="middle" />
 
-                    {bought ? (
+                    {bought || isMine ? (
                         <>
                             <IngredientsList ingredients={recipe.ingredients} />
 
@@ -48,13 +45,17 @@ const Recipe = ({ recipe, bought }) => {
                         </>
                     ) : (
                         <div>
-                            <Typography variant="h5" component="h2" align="center">
+                            <Typography sx={{ marginTop: '40px', marginBottom: '40px' }} variant="h5" component="h2" align="center">
                                 You have to buy this recipe to see the ingredients and steps.
                             </Typography>
                         </div>
                     )}
 
                     <Divider variant="middle" />
+
+                    <div ref={reviews}>
+                        <ReviewsList reviews={recipe.reviews} bought={bought} isMine={isMine} />
+                    </div>
                 </Layout>
             </AuthGuard>
         )
@@ -70,10 +71,13 @@ export async function getServerSideProps(context) {
 
         const bought = await getIsBought(idrecipe, token);
 
+        const isMine = await getIsMine(idrecipe, token);
+
         return {
             props: {
                 recipe: recipe,
                 bought: bought.bought,
+                isMine: isMine.isMine,
             },
         };
     } catch (error) {

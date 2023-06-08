@@ -49,7 +49,7 @@ const RecipeCard = ({ id, title, image, description, author, valuation }) => {
                             icon={<LunchDiningIcon fontSize="inherit" />}
                             emptyIcon={<LunchDiningIcon fontSize="inherit" />}
                             value={valuation}
-                            precision={0.5}
+                            precision={0.1}
                             readOnly
                         />
                     </Typography>

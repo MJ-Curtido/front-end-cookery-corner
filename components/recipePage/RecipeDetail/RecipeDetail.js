@@ -10,7 +10,7 @@ import CSS from './RecipeDetail.module.css';
 
 //TODO: Hacer que cuando le de a comprar, salga un modal y te ponga los datos necesarios para comprarlo
 
-const RecipeDetail = ({ recipe, scrollToBottom }) => {
+const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom }) => {
     return (
         <div className={CSS.container}>
             <Typography className={CSS.title} variant="h1">
@@ -43,7 +43,7 @@ const RecipeDetail = ({ recipe, scrollToBottom }) => {
                             icon={<LunchDiningIcon fontSize="large" />}
                             emptyIcon={<LunchDiningIcon fontSize="large" />}
                             value={recipe.valuation}
-                            precision={0.5}
+                            precision={0.1}
                             readOnly
                         />
                     </div>
@@ -56,9 +56,11 @@ const RecipeDetail = ({ recipe, scrollToBottom }) => {
 
             <Typography className={CSS.buy} variant="h2">
                 {recipe.price} €
-                <Button className={CSS.button} variant="contained" color="secondary">
-                    <ShoppingCartIcon fontSize="large" />
-                </Button>
+                {!isMine && !bought && (
+                    <Button className={CSS.button} variant="contained" color="secondary">
+                        <ShoppingCartIcon fontSize="large" />
+                    </Button>
+                )}
             </Typography>
         </div>
     );

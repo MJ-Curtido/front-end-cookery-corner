@@ -1,0 +1,89 @@
+.button {
+    margin-left: auto;
+}
+
+.comment {
+    width: 50vw;
+}
+
+.commentReview {
+    margin-left: 4px;
+    font-size: large;
+}
+
+.container {
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 77px;
+
+    @media (max-width: 1200px) {
+        width: 992px;
+    }
+
+    @media (max-width: 992px) {
+        width: 768px;
+    }
+
+    @media (max-width: 768px) {
+        width: 576px;
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;
+    }
+}
+
+.containerForm {
+    width: 100%;
+}
+
+.formReview {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.iconAuthor {
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.list {
+    width: 100%;
+}
+
+.review {
+    background-color: #f0f0f0;
+    padding: 30px;
+}
+.title {
+    width: 100%;
+    margin: 40px auto;
+}
+
+.userReview {
+    display: flex;
+    align-items: center;
+    font-size: large;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+
+.valuation {
+    margin-right: auto;
+    font-size: 35px;
+}
+
+.valuationReview {
+    margin-top: 20px;
+}
+
+.valuationBotton {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
