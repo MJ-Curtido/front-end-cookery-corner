@@ -9,7 +9,6 @@ import { userStore } from '@/store/userStore';
 import CSS from './Header.module.css';
 //#endregion
 
-//TODO: Añadir que cuando le de a lo de añadir receta, se le redirija a la página de crear receta
 //TODO: Anadir que cuando le de a lo de perfil, abra un menú y elijas entre ver perfil, editar perfil y cerrar sesión
 
 const Header = () => {
@@ -28,7 +27,7 @@ const Header = () => {
                     Cookery Corner
                 </Typography>
 
-                <Link href="/cookerycorner/">
+                <Link href="/cookerycorner/create">
                     <Tooltip title="Create recipe" placement="bottom">
                         <PlaylistAddIcon className={CSS.icons} />
                     </Tooltip>
