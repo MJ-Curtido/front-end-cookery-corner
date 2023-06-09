@@ -3,7 +3,7 @@
 }
 
 .comment {
-    width: 50vw;
+    width: 100%;
 }
 
 .commentReview {
@@ -41,9 +41,11 @@
 }
 
 .formReview {
-    width: fit-content;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .iconAuthor {
