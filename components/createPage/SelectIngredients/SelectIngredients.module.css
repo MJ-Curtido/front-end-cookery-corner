@@ -1,6 +1,12 @@
-.avatar {
-    width: 70px;
-    height: 70px;
+.button {
+    height: auto;
+    margin: 40px auto;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .containerGrid {
@@ -8,7 +14,7 @@
     padding: 17px;
     width: fit-content;
     margin: 40px auto;
-    
+
     @media screen and (max-width: 768px) {
         width: 100%;
     }
@@ -22,6 +28,10 @@
     @media screen and (max-width: 768px) {
         width: 100%;
     }
+}
+
+.input {
+    width: 30%;
 }
 
 .listItem {

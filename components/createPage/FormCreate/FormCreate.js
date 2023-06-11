@@ -1,17 +1,17 @@
 //#region Imports
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Divider, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CSS from './FormCreate.module.css';
 import SelectImage from '../SelectImage/SelectImage';
+import SelectIngredients from '../SelectIngredients/SelectIngredients';
 //#endregion
-
-//TODO: Terminar de implementar el formulario
 
 const FormCreate = () => {
     //#region Elements
-    const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [images, setImages] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     //#endregion
 
     //#region Functions
@@ -61,7 +61,7 @@ const FormCreate = () => {
                 <TextField
                     className={CSS.inputRecipe}
                     label="Title of the recipe..."
-                    value={description}
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     variant="outlined"
                     color="secondary"
@@ -87,6 +87,14 @@ const FormCreate = () => {
                 </Typography>
 
                 <SelectImage images={images} setImages={setImages} />
+
+                <Typography className={CSS.titleSection} variant="h4" align="center" gutterBottom>
+                    Ingredients
+                </Typography>
+
+                <SelectIngredients ingredients={ingredients} setIngredients={setIngredients} />
+
+                <Divider variant='middle' />
 
                 <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
                     Create recipe

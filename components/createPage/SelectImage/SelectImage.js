@@ -7,10 +7,6 @@ import ImageUploader from '@/components/additional/ImageUploader/ImageUploader';
 //#endregion
 
 const SelectImage = ({ images, setImages }) => {
-    const handleSetImages = (convertedImages) => {
-        setImages([...images, ...convertedImages]);
-    };
-
     const handleRemoveImage = (index) => {
         const updatedImages = [...images];
         updatedImages.splice(index, 1);
