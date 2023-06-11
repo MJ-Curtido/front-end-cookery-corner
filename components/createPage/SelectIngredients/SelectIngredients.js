@@ -37,10 +37,10 @@ const SelectIngredients = ({ ingredients, setIngredients }) => {
         }
     };
 
-    const handleRemoveImage = (index) => {
-        const updatedImages = [...ingredients];
-        updatedImages.splice(index, 1);
-        setIngredients(updatedImages);
+    const handleRemoveIngredient = (index) => {
+        const updatedIngredients = [...ingredients];
+        updatedIngredients.splice(index, 1);
+        setIngredients(updatedIngredients);
     };
     //#endregion
 
@@ -95,13 +95,12 @@ const SelectIngredients = ({ ingredients, setIngredients }) => {
                             <ListItem
                                 className={CSS.listItem}
                                 secondaryAction={
-                                    <IconButton edge="end" aria-label="delete" onClick={() => handleRemoveImage(index)}>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => handleRemoveIngredient(index)}>
                                         <DeleteIcon />
                                     </IconButton>
                                 }
                             >
                                 <ListItemText
-                                    className={CSS.ingredient}
                                     primary={
                                         <Typography className={CSS.nameIng} variant="h6" component="span">
                                             {ingredient.name}

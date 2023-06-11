@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.containerGrid {
+.containerList {
     border-radius: 12px;
     padding: 17px;
     width: fit-content;
@@ -20,9 +20,9 @@
     }
 }
 
-.grid {
+.list {
     height: 300px;
-    overflow-y: auto;
+    overflow: auto;
     width: 700px;
 
     @media screen and (max-width: 768px) {
@@ -31,9 +31,14 @@
 }
 
 .input {
-    width: 30%;
+    width: 90%;
 }
 
 .listItem {
     width: fit-content;
+}
+
+.listItemWrapper {
+    display: flex;
+    flex-direction: column;
 }

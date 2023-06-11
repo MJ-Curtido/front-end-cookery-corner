@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 import CSS from './FormCreate.module.css';
 import SelectImage from '../SelectImage/SelectImage';
 import SelectIngredients from '../SelectIngredients/SelectIngredients';
+import SelectSteps from '../SelectSteps/SelectSteps';
 //#endregion
 
 const FormCreate = () => {
     //#region Elements
-    const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [images, setImages] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+    const [steps, setSteps] = useState([]);
+    const [title, setTitle] = useState('');
     //#endregion
 
     //#region Functions
@@ -94,7 +96,13 @@ const FormCreate = () => {
 
                 <SelectIngredients ingredients={ingredients} setIngredients={setIngredients} />
 
-                <Divider variant='middle' />
+                <Typography className={CSS.titleSection} variant="h4" align="center" gutterBottom>
+                    Steps
+                </Typography>
+
+                <SelectSteps steps={steps} setSteps={setSteps} />
+
+                <Divider variant="middle" className={CSS.divider} />
 
                 <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
                     Create recipe

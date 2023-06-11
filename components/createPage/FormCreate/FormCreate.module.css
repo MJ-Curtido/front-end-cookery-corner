@@ -1,6 +1,10 @@
 .button {
     margin: 40px auto;
     display: flex;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
 .container {
@@ -38,7 +42,6 @@
 
 .inputRecipe {
     width: 100%;
-    margin-bottom: 40px;
 }
 
 .title {
@@ -52,7 +55,11 @@
 
 .titleSection {
     width: 100%;
-    margin: 40px auto;
+    margin: 130px auto 40px auto;
     font-weight: 300;
     font-size: 40px;
+}
+
+.divider {
+    margin: 70px auto;
 }
