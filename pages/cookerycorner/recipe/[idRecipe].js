@@ -78,6 +78,7 @@ const Recipe = ({ recipe, bought, isMine }) => {
 export async function getServerSideProps(context) {
     try {
         const { idrecipe } = context.query;
+
         const token = context.req.cookies.token;
 
         const recipe = await getRecipe(idrecipe, token);
