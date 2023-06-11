@@ -23,11 +23,6 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
     const user = store(userStore, (state) => state.user);
     //#endregion
 
-    //#region Functions
-    const handleCommentChange = (event) => {
-        setComment(event.target.value);
-    };
-
     const handleSubmit = async (e) => {
         if (comment !== '') {
             e.preventDefault();
@@ -58,7 +53,6 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
             }
         }
     };
-    //#endregion
 
     return (
         <div className={CSS.container}>
@@ -77,7 +71,7 @@ const ReviewsList = ({ idRecipe, reviews, bought, isMine, updateRecipe }) => {
                             className={CSS.comment}
                             label="Write your comment here..."
                             value={comment}
-                            onChange={handleCommentChange}
+                            onChange={(e) => setComment(e.target.value)}
                             multiline
                             rows={4}
                             variant="outlined"

@@ -1,0 +1,21 @@
+.avatar {
+    width: 70px;
+    height: 70px;
+}
+
+.containerGrid {
+    border-radius: 12px;
+    padding: 17px;
+    width: fit-content;
+    margin: 40px auto;
+}
+
+.grid {
+    max-height: 300px;
+    overflow-y: auto;
+    max-width: 700px;
+}
+
+.listItem {
+    width: fit-content;
+}

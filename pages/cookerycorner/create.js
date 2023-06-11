@@ -1,4 +1,7 @@
 //#region Imports
+import AuthGuard from '@/components/additional/AuthGuard';
+import Layout from '@/components/additional/Layout';
+import FormCreate from '@/components/createPage/FormCreate/FormCreate';
 import React from 'react';
 //#endregion
 
@@ -6,9 +9,11 @@ import React from 'react';
 
 const create = () => {
     return (
-        <div>
-            <h1>Create recipe</h1>
-        </div>
+        <AuthGuard>
+            <Layout>
+                <FormCreate />
+            </Layout>
+        </AuthGuard>
     );
 };
 
