@@ -39,7 +39,7 @@
 
 .inputRecipe {
     width: 100%;
-    margin: 40px 0;
+    margin-bottom: 40px;
 }
 
 .title {
@@ -53,7 +53,7 @@
 
 .titleSection {
     width: 100%;
-    margin: 40px auto 0 auto;
+    margin: 40px auto;
     font-weight: 300;
     font-size: 40px;
 }

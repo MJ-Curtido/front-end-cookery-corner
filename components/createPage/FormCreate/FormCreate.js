@@ -11,6 +11,8 @@ const FormCreate = () => {
     //#region Elements
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
+    const [images, setImages] = useState([]);
+    //#endregion
 
     //#region Functions
     const handleSubmit = async (e) => {
@@ -84,7 +86,7 @@ const FormCreate = () => {
                     Images
                 </Typography>
 
-                <SelectImage />
+                <SelectImage images={images} setImages={setImages} />
 
                 <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
                     Create recipe
