@@ -91,7 +91,7 @@ const SelectIngredients = ({ ingredients, setIngredients }) => {
             <Card className={CSS.containerGrid} variant="outlined">
                 <Grid className={CSS.grid} container spacing={2}>
                     {ingredients.map((ingredient, index) => (
-                        <Grid item xs={6}>
+                        <Grid key={index} item xs={6}>
                             <ListItem
                                 className={CSS.listItem}
                                 secondaryAction={

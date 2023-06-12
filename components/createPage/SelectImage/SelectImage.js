@@ -1,26 +1,69 @@
 //#region Imports
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import CSS from './SelectImage.module.css';
-import { Avatar, Card, Grid, IconButton, ListItem, ListItemAvatar, Typography } from '@mui/material';
+import { Avatar, Button, Card, Grid, IconButton, ListItem, ListItemAvatar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ImageUploader from '@/components/additional/ImageUploader/ImageUploader';
 //#endregion
 
 const SelectImage = ({ images, setImages }) => {
+    const [imagesTemp, setImagesTemp] = useState([]);
+    const fileInputRef = useRef(null);
+
+    //#region Functions
     const handleRemoveImage = (index) => {
+        const updatedImagesTemp = [...imagesTemp];
+        updatedImagesTemp.splice(index, 1);
+        setImagesTemp(updatedImagesTemp);
+
         const updatedImages = [...images];
         updatedImages.splice(index, 1);
         setImages(updatedImages);
     };
 
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        const updatedImages = [...images];
+        updatedImages.push(file);
+
+        setImages(updatedImages);
+
+        const updatedImagesTemp = [...imagesTemp];
+        updatedImagesTemp.push(URL.createObjectURL(file));
+
+        setImagesTemp(updatedImagesTemp);
+    };
+    //#endregion
+
     return (
         <>
-            <ImageUploader images={images} setImages={setImages} />
+            <div>
+                <input
+                    type="file"
+                    id="image-input"
+                    accept="image/png, image/jpeg"
+                    multiple={false}
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
+
+                <Button
+                    className={CSS.btn}
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                        fileInputRef.current.click();
+                    }}
+                >
+                    Upload images
+                </Button>
+            </div>
 
             <Card className={CSS.containerGrid} variant="outlined">
                 <Grid className={CSS.grid} container spacing={2}>
-                    {images.map((image, index) => (
-                        <Grid item xs={6}>
+                    {imagesTemp.map((image, index) => (
+                        <Grid key={index} item xs={6}>
                             <ListItem
                                 className={CSS.listItem}
                                 secondaryAction={

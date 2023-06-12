@@ -1,56 +1,71 @@
 //#region Imports
-import { Button, Divider, TextField, Typography } from '@mui/material';
+import { Alert, Button, Divider, Snackbar, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CSS from './FormCreate.module.css';
 import SelectImage from '../SelectImage/SelectImage';
 import SelectIngredients from '../SelectIngredients/SelectIngredients';
 import SelectSteps from '../SelectSteps/SelectSteps';
+import { createRecipe } from '@/api/recipePetitions';
+import Cookies from 'universal-cookie';
+import { useRouter } from 'next/router';
 //#endregion
 
 const FormCreate = () => {
     //#region Elements
+    const cookies = new Cookies();
+    const router = useRouter();
     const [description, setDescription] = useState('');
     const [images, setImages] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+    const [messageSnackbar, setMessageSnackbar] = useState('');
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [price, setPrice] = useState('');
+    const [severitySnackbar, setSeveritySnackbar] = useState('success');
     const [steps, setSteps] = useState([]);
     const [title, setTitle] = useState('');
     //#endregion
 
     //#region Functions
     const handleSubmit = async (e) => {
-        if (description !== '') {
-            e.preventDefault();
+        e.preventDefault();
 
-            const review = {
-                reviews: {
-                    text: description,
-                    valuation: rating,
-                    user: user._id,
-                },
+        if (title !== '' && description !== '' && !(price < 0) && ingredients.length > 0 && steps.length > 0) {
+            const recipe = {
+                title,
+                description,
+                price,
+                images,
+                ingredients,
+                steps,
             };
 
             try {
-                await pushReview(idRecipe, review, cookies.get('token'));
+                await createRecipe(recipe, cookies.get('token'));
 
-                updateRecipe();
+                router.push('/cookerycorner/main');
 
-                setDescription('');
-                setRating(0);
-
-                setMessageSnackbar('Review sent.');
+                setMessageSnackbar('Recipe created.');
                 setSeveritySnackbar('success');
                 setOpenSnackbar(true);
             } catch (error) {
-                setMessageSnackbar('Error sending review.');
+                setMessageSnackbar('Error creating the recipe.');
                 setSeveritySnackbar('error');
                 setOpenSnackbar(true);
             }
+        } else {
+            setMessageSnackbar('You have to complete the fields correctly.');
+            setSeveritySnackbar('error');
+            setOpenSnackbar(true);
         }
     };
     //#endregion
 
     return (
         <div className={CSS.container}>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+                <Alert severity={severitySnackbar}>{messageSnackbar}</Alert>
+            </Snackbar>
+
             <Typography className={CSS.title} variant="h1">
                 Create recipe
             </Typography>
@@ -67,6 +82,7 @@ const FormCreate = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     variant="outlined"
                     color="secondary"
+                    sx={{ marginBottom: '40px' }}
                     fullWidth
                     required
                 />
@@ -80,6 +96,20 @@ const FormCreate = () => {
                     rows={4}
                     variant="outlined"
                     color="secondary"
+                    sx={{ marginBottom: '40px' }}
+                    fullWidth
+                    required
+                />
+
+                <TextField
+                    type="number"
+                    className={CSS.inputRecipe}
+                    label="Price of the recipe..."
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    variant="outlined"
+                    color="secondary"
+                    sx={{ marginBottom: '40px' }}
                     fullWidth
                     required
                 />
@@ -102,7 +132,7 @@ const FormCreate = () => {
 
                 <SelectSteps steps={steps} setSteps={setSteps} />
 
-                <Divider variant="middle" className={CSS.divider} />
+                <Divider variant="fullWidth" className={CSS.divider} />
 
                 <Button type="submit" className={CSS.button} variant="contained" color="secondary" onClick={handleSubmit}>
                     Create recipe
