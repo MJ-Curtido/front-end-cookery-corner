@@ -1,18 +1,49 @@
 //#region Imports
-import { AppBar, Avatar, Toolbar, Typography, Tooltip } from '@mui/material';
+import { AppBar, Avatar, Toolbar, Typography, Tooltip, Box, Menu, MenuItem, Divider, ListItemIcon, IconButton } from '@mui/material';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import store from '@/store/store';
 import { userStore } from '@/store/userStore';
 import CSS from './Header.module.css';
+import { Logout, Settings } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import Cookies from 'universal-cookie';
 //#endregion
 
-//TODO: Anadir que cuando le de a lo de perfil, abra un menú y elijas entre ver perfil, editar perfil y cerrar sesión
-
 const Header = () => {
+    //#region Elements
+    const cookies = new Cookies();
+    const router = useRouter();
     const user = store(userStore, (state) => state.user);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    //#endregion
+
+    //#region Functions
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleAccount = () => {
+        router.push(`/cookerycorner/user/${user ? user._id : ''}`);
+
+        setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        cookies.remove('token');
+
+        router.push('/');
+
+        setAnchorEl(null);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    //#endregion
 
     return (
         <AppBar className={CSS.header}>
@@ -39,11 +70,67 @@ const Header = () => {
                     </Tooltip>
                 </Link>
 
-                <Link href={`/cookerycorner/user/${user ? user._id : ''}`}>
-                    <Tooltip title="View profile" placement="bottom">
-                        <Avatar className={CSS.iconProfile} alt="Icon" src="/iconUser.png" />
+                <Box>
+                    <Tooltip title="Account" placement="bottom">
+                        <IconButton
+                            onClick={handleClick}
+                            size="small"
+                            sx={{ position: 'relative' }}
+                            aria-controls={open ? 'account-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                        >
+                            <Avatar className={CSS.iconProfile} alt="Icon" src="/iconUser.png" />
+                        </IconButton>
                     </Tooltip>
-                </Link>
+                </Box>
+                <Menu
+                    anchorEl={anchorEl}
+                    id="account-menu"
+                    open={open}
+                    onClose={handleClose}
+                    onClick={handleClose}
+                    PaperProps={{
+                        elevation: 0,
+                        sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            mt: 1.5,
+                            '& .MuiAvatar-root': {
+                                width: 32,
+                                height: 32,
+                                ml: -0.5,
+                                mr: 1,
+                            },
+                            '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                top: 0,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                bgcolor: 'background.paper',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0,
+                            },
+                        },
+                    }}
+                    sx={{ position: 'absolute', right: 0 }}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+                    <MenuItem onClick={handleAccount}>
+                        <Avatar className={CSS.iconProfile} alt="Icon" src="/iconUser.png" /> My account
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem onClick={handleLogout}>
+                        <ListItemIcon>
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Logout
+                    </MenuItem>
+                </Menu>
             </Toolbar>
         </AppBar>
     );
