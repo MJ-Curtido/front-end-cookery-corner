@@ -12,6 +12,8 @@ import { useRouter } from 'next/router';
 import Cookies from 'universal-cookie';
 //#endregion
 
+//TODO: Hacer que al abrir el menú, no se mueva todo el header
+
 const Header = () => {
     //#region Elements
     const cookies = new Cookies();
@@ -116,7 +118,6 @@ const Header = () => {
                             },
                         },
                     }}
-                    sx={{ position: 'absolute', right: 0 }}
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
