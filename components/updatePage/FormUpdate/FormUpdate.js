@@ -25,7 +25,7 @@ const FormCreate = ({ recipe }) => {
     const [title, setTitle] = useState(recipe.title);
     //#endregion
 
-    //TODO: comprobar si edita bien y arreglar lo de las imágenes
+    //TODO: arreglar lo de las imágenes
     //#region Functions
     const handleSubmit = async (e) => {
         e.preventDefault();
