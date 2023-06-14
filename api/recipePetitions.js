@@ -1,3 +1,5 @@
+const baseUrl = 'http://127.0.0.1:3007/';
+
 export const recipesAvailable = async (page, token) => {
     try {
         const response = await fetch(`http://127.0.0.1:3007/recipes/available?page=${page}`, {
@@ -14,6 +16,12 @@ export const recipesAvailable = async (page, token) => {
         }
 
         const data = await response.json();
+
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
 
         return data;
     } catch (error) {
@@ -42,6 +50,12 @@ export const searchRecipes = async (page, search, token) => {
 
         const data = await response.json();
 
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
+
         return data;
     } catch (error) {
         if (error.status) {
@@ -68,6 +82,10 @@ export const getRecipe = async (idRecipe, token) => {
         }
 
         const data = await response.json();
+
+        data.images.forEach((image, index) => {
+            data.images[index] = `${baseUrl}${image}`;
+        });
 
         return data;
     } catch (error) {
@@ -147,6 +165,12 @@ export const getRecipesByUserValuation = async (page, idUser, token) => {
 
         const data = await response.json();
 
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
+
         return data;
     } catch (error) {
         if (error.status) {
@@ -173,6 +197,12 @@ export const getRecipesByUserDate = async (page, idUser, token) => {
         }
 
         const data = await response.json();
+
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
 
         return data;
     } catch (error) {

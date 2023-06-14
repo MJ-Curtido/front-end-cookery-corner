@@ -8,7 +8,7 @@ import CSS from './CarouselCustom.module.css';
 
 const CarouselCustom = ({ stuff }) => {
     return (
-        <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false} showArrows={true} interval={5000}>
+        <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={true} showArrows={true} interval={5000}>
             {stuff.map((img, index) => (
                 <Container key={index}>
                     <img className={CSS.carousel} src={img} alt={`Carousel Image ${index}`} />
