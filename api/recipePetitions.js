@@ -230,7 +230,7 @@ export const createRecipe = async (recipe, token) => {
     }
 };
 
-export const editRecipe = async (recipe, token) => {
+export const editRecipe = async (idRecipe, recipe, token) => {
     try {
         const formData = new FormData();
         formData.append('title', recipe.title);
@@ -253,7 +253,7 @@ export const editRecipe = async (recipe, token) => {
             formData.append('steps', step);
         });
 
-        const response = await fetch(`http://127.0.0.1:3007/recipes/${recipe.idRecipe}`, {
+        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}`, {
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,

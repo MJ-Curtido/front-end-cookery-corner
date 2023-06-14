@@ -1,13 +1,17 @@
+//#region Imports
 import { useState } from 'react';
 import { Button, Modal, Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import CSS from './ModalShopNow.module.css';
+//#endregion
 
 const ModalShopNow = ({ open, onSetOpen, onBuyHandler }) => {
+    //#region Elements
     const [cardNumber, setCardNumber] = useState('');
     const [cardHolder, setCardHolder] = useState('');
     const [expiryMonth, setExpiryMonth] = useState('');
     const [expiryYear, setExpiryYear] = useState('');
     const [cvv, setCvv] = useState('');
+    //#endregion
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -63,7 +67,13 @@ const ModalShopNow = ({ open, onSetOpen, onBuyHandler }) => {
                         Buy
                     </Button>
 
-                    <Button className={CSS.btnCancel} onClick={() => {onSetOpen(false)}} variant="contained">
+                    <Button
+                        className={CSS.btnCancel}
+                        onClick={() => {
+                            onSetOpen(false);
+                        }}
+                        variant="contained"
+                    >
                         Cancel
                     </Button>
                 </form>

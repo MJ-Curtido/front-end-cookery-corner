@@ -1,0 +1,65 @@
+.button {
+    margin: 40px auto;
+    display: flex;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 77px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+
+    @media (max-width: 1200px) {
+        width: 992px;
+    }
+
+    @media (max-width: 992px) {
+        width: 768px;
+    }
+
+    @media (max-width: 768px) {
+        width: 576px;
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;
+    }
+}
+
+.formCreate {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.inputRecipe {
+    width: 100%;
+}
+
+.title {
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 40px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.titleSection {
+    width: 100%;
+    margin: 130px auto 40px auto;
+    font-weight: 300;
+    font-size: 40px;
+}
+
+.divider {
+    margin: 70px auto;
+}

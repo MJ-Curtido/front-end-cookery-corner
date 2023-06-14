@@ -3,6 +3,7 @@ import React from 'react';
 import { getRecipe } from '@/api/recipePetitions';
 import Layout from '@/components/additional/Layout';
 import AuthGuard from '@/components/additional/AuthGuard';
+import FormUpdate from '@/components/updatePage/FormUpdate/FormUpdate';
 //#endregion
 
 const Recipe = ({ recipe }) => {
@@ -10,7 +11,7 @@ const Recipe = ({ recipe }) => {
         recipe && (
             <AuthGuard>
                 <Layout>
-                    
+                    <FormUpdate recipe={recipe} />
                 </Layout>
             </AuthGuard>
         )

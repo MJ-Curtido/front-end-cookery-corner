@@ -1,0 +1,39 @@
+.button {
+    height: auto;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.containerGrid {
+    border-radius: 12px;
+    padding: 17px;
+    width: fit-content;
+    margin: 40px auto;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.grid {
+    height: 300px;
+    overflow-y: auto;
+    width: 700px;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.input {
+    width: 30%;
+}
+
+.listItem {
+    width: fit-content;
+}

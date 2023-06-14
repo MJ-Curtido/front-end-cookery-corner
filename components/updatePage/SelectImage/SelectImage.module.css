@@ -1,0 +1,35 @@
+.avatar {
+    width: 70px;
+    height: 70px;
+}
+
+.btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.containerGrid {
+    border-radius: 12px;
+    padding: 17px;
+    width: fit-content;
+    margin: 40px auto;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.grid {
+    height: 300px;
+    overflow-y: auto;
+    width: 700px;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.listItem {
+    width: fit-content;
+}
