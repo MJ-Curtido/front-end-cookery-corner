@@ -9,9 +9,7 @@ import CarouselCustom from '../CarouselCustom/CarouselCustom';
 import CSS from './RecipeDetail.module.css';
 //#endregion
 
-//TODO: Hacer que cuando le de a comprar, salga un modal y te ponga los datos necesarios para comprarlo, o si no añadir un nuevo modal en el back que tenga un usuario y un array de recetas, que serán las recetas que tengas en el carrito, y que cuando compre, que las compre todas a la vez
-
-const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom }) => {
+const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom, onSetOpen }) => {
     const router = useRouter();
 
     return (
@@ -60,7 +58,7 @@ const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom }) => {
             <Typography className={CSS.buy} variant="h2">
                 {recipe.price} €
                 {!isMine && !bought && (
-                    <Button className={CSS.button} variant="contained" color="secondary">
+                    <Button className={CSS.button} variant="contained" color="secondary" onClick={() => {onSetOpen(true)}}>
                         <ShoppingCartIcon fontSize="large" />
                     </Button>
                 )}

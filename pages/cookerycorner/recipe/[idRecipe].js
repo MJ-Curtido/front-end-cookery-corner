@@ -6,11 +6,12 @@ import Cookies from 'universal-cookie';
 import RecipeDetail from '@/components/recipePage/RecipeDetail/RecipeDetail';
 import Layout from '@/components/additional/Layout';
 import AuthGuard from '@/components/additional/AuthGuard';
-import { Divider, Typography } from '@mui/material';
+import { Alert, Divider, Snackbar, Typography } from '@mui/material';
 import IngredientsList from '@/components/recipePage/IngredientsList/IngredientsList';
 import StepsList from '@/components/recipePage/StepsList/StepsList';
-import { getIsBought } from '@/api/purchasePetitions';
+import { buyRecipe, getIsBought } from '@/api/purchasePetitions';
 import ReviewsList from '@/components/recipePage/ReviewsList/ReviewsList';
+import ModalShopNow from '@/components/additional/ModalShopNow/ModalShopNow';
 //#endregion
 
 const Recipe = ({ recipe, bought, isMine }) => {
@@ -19,6 +20,10 @@ const Recipe = ({ recipe, bought, isMine }) => {
     const cookies = new Cookies();
     const reviews = useRef('reviews');
     const [actualRecipe, setActualRecipe] = useState(recipe);
+    const [messageSnackbar, setMessageSnackbar] = useState('');
+    const [open, setOpen] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [severitySnackbar, setSeveritySnackbar] = useState('success');
     //#endregion
 
     useEffect(() => {
@@ -38,13 +43,42 @@ const Recipe = ({ recipe, bought, isMine }) => {
 
         setActualRecipe(newRecipe);
     };
+
+    const buyHandler = async () => {
+        const token = cookies.get('token');
+
+        try {
+            await buyRecipe(recipe._id, token);
+
+            setMessageSnackbar('Recipe purchased successfully.');
+            setSeveritySnackbar('success');
+            setOpenSnackbar(true);
+
+            router.push('/cookerycorner/purchased');
+        } catch (error) {
+            setMessageSnackbar('There is something wrong.');
+            setSeveritySnackbar('error');
+            setOpenSnackbar(true);
+        }
+
+        setOpen(false);
+    };
     //#endregion
 
     return (
         recipe && (
             <AuthGuard>
                 <Layout>
-                    <RecipeDetail bought={bought} recipe={actualRecipe} isMine={isMine} scrollToBottom={scrollToBottom} />
+                    <Snackbar
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        open={openSnackbar}
+                        autoHideDuration={3000}
+                        onClose={() => setOpenSnackbar(false)}
+                    >
+                        <Alert severity={severitySnackbar}>{messageSnackbar}</Alert>
+                    </Snackbar>
+
+                    <RecipeDetail bought={bought} recipe={actualRecipe} isMine={isMine} scrollToBottom={scrollToBottom} onSetOpen={setOpen} />
 
                     <Divider variant="middle" />
 
@@ -69,6 +103,8 @@ const Recipe = ({ recipe, bought, isMine }) => {
                     <div ref={reviews}>
                         <ReviewsList idRecipe={actualRecipe._id} reviews={actualRecipe.reviews} bought={bought} isMine={isMine} updateRecipe={updateRecipe} />
                     </div>
+
+                    <ModalShopNow open={open} onSetOpen={setOpen} onBuyHandler={buyHandler} />
                 </Layout>
             </AuthGuard>
         )

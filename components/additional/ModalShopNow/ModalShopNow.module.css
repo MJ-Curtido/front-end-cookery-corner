@@ -1,0 +1,41 @@
+.btnBuy {
+    float: left;
+    width: 47%;
+}
+
+.btnCancel {
+    margin-left: auto;
+    float: right;
+    width: 47%;
+}
+
+.input {
+    margin-bottom: 17px;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 24;
+    width: 700px;
+    padding: 17px;
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
+}
+
+.month {
+    float: left;
+    width: 47%;
+}
+
+.year {
+    margin-left: auto;
+    float: right;
+    width: 47%;
+}

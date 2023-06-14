@@ -108,7 +108,7 @@ export const getIsMine = async (idRecipe, token) => {
 
 export const pushReview = async (idRecipe, review, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}`, {
+        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}/review`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -209,6 +209,52 @@ export const createRecipe = async (recipe, token) => {
 
         const response = await fetch('http://127.0.0.1:3007/recipes/create', {
             method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        console.log(response.status);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw { message: errorData.error, status: response.status };
+        }
+    } catch (error) {
+        if (error.status) {
+            throw error;
+        } else {
+            throw { message: 'There is something wrong.', status: 500 };
+        }
+    }
+};
+
+export const editRecipe = async (recipe, token) => {
+    try {
+        const formData = new FormData();
+        formData.append('title', recipe.title);
+        formData.append('description', recipe.description);
+        formData.append('price', recipe.price);
+
+        recipe.images.forEach((image, index) => {
+            formData.append('images', image);
+        });
+
+        recipe.ingredients.forEach((ingredient, index) => {
+            formData.append(`ingredients[${index}][name]`, ingredient.name);
+            formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
+            if (ingredient.unit) {
+                formData.append(`ingredients[${index}][unit]`, ingredient.unit);
+            }
+        });
+
+        recipe.steps.forEach((step, index) => {
+            formData.append('steps', step);
+        });
+
+        const response = await fetch(`http://127.0.0.1:3007/recipes/${recipe.idRecipe}`, {
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,
             },

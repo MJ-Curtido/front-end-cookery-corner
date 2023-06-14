@@ -1,20 +1,20 @@
 //#region Imports
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import { getUser } from '@/api/userPetitions';
 import AuthGuard from '@/components/additional/AuthGuard';
 import Layout from '@/components/additional/Layout';
 import { getRecipesByUserDate, getRecipesByUserValuation } from '@/api/recipePetitions';
 import UserDetail from '@/components/userPage/UserDetail/UserDetail';
 import RecipesCardsList from '@/components/common/RecipesCardsList/RecipesCardsList';
-import { Pagination } from '@mui/material';
+import { Pagination, Typography } from '@mui/material';
 //#endregion
 
 const User = ({ user, recipes, pages }) => {
     //#region Elements
     const cookies = new Cookies();
-    const Router = useRouter();
+    const router = useRouter();
     const [recipesList, setRecipesList] = useState(recipes);
     const [totalPages, setTotalPages] = useState(pages);
     const [page, setPage] = useState(1);
@@ -68,7 +68,13 @@ const User = ({ user, recipes, pages }) => {
             <Layout>
                 <UserDetail user={user} onOrderByValuation={recipesByValuation} onOrderByDate={recipesByDate} />
 
-                <RecipesCardsList recipes={recipesList} />
+                {recipesList.length > 0 ? (
+                    <RecipesCardsList recipes={recipesList} />
+                ) : (
+                    <Typography variant="h4" style={{ textAlign: 'center', color: '#424242', marginBottom: '70px' }}>
+                        You haven't created any recipe yet.
+                    </Typography>
+                )}
 
                 <div style={CSS.paginationDiv}>
                     <Pagination count={totalPages} color="secondary" variant="outlined" shape="rounded" onChange={paginationHandler} />
@@ -93,7 +99,7 @@ export async function getServerSideProps(context) {
         const token = context.req.cookies.token;
 
         const user = await getUser(iduser, token);
-        
+
         const recipes = await getRecipesByUserValuation(1, iduser, token);
         const pages = Math.ceil(recipes.totalRecipes / 10);
 
