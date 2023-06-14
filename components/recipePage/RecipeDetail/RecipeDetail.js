@@ -18,6 +18,20 @@ const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom, onSetOpen }) => 
                 {recipe.title}
             </Typography>
 
+            {isMine && (
+                <Button
+                    type="submit"
+                    className={CSS.button}
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {
+                        router.push(`/cookerycorner/updaterecipe/${recipe._id}`);
+                    }}
+                >
+                    Edit recipe
+                </Button>
+            )}
+
             <CarouselCustom stuff={recipe.images.length !== 0 ? recipe.images : ['/noPhoto.jpg']} />
 
             <Typography className={CSS.author} variant="overline" color="black">
@@ -58,7 +72,14 @@ const RecipeDetail = ({ recipe, isMine, bought, scrollToBottom, onSetOpen }) => 
             <Typography className={CSS.buy} variant="h2">
                 {recipe.price} €
                 {!isMine && !bought && (
-                    <Button className={CSS.button} variant="contained" color="secondary" onClick={() => {onSetOpen(true)}}>
+                    <Button
+                        className={CSS.button}
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            onSetOpen(true);
+                        }}
+                    >
                         <ShoppingCartIcon fontSize="large" />
                     </Button>
                 )}

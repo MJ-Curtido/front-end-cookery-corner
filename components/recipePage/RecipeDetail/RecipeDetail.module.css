@@ -8,6 +8,15 @@
     font-size: medium;
 }
 
+.button {
+    margin: 40px auto;
+    display: flex;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
 .buy {
     background-color: #f0f0f0;
     border-radius: 5px;
