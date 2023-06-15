@@ -42,6 +42,12 @@ export const getPurchasedRecipes = async (page, token) => {
 
         const data = await response.json();
 
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
+
         return data;
     } catch (error) {
         if (error.status) {
@@ -68,6 +74,12 @@ export const searchPurchasedRecipes = async (page, search, token) => {
         }
 
         const data = await response.json();
+
+        data.recipes.forEach((recipe) => {
+            recipe.images.forEach((image, index) => {
+                recipe.images[index] = `${baseUrl}${image}`;
+            });
+        });
 
         return data;
     } catch (error) {
