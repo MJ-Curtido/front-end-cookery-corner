@@ -1,6 +1,8 @@
+const baseUrl = 'http://127.0.0.1:3007/';
+
 export const getUser = async (iduser, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/users/${iduser}`, {
+        const response = await fetch(`${baseUrl}users/${iduser}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

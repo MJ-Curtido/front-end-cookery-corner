@@ -35,7 +35,7 @@ export const recipesAvailable = async (page, token) => {
 
 export const searchRecipes = async (page, search, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/search/${search}?page=${page}`, {
+        const response = await fetch(`${baseUrl}recipes/search/${search}?page=${page}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const searchRecipes = async (page, search, token) => {
 
 export const getRecipe = async (idRecipe, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}`, {
+        const response = await fetch(`${baseUrl}recipes/${idRecipe}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export const getRecipe = async (idRecipe, token) => {
 
 export const getIsMine = async (idRecipe, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/me/${idRecipe}`, {
+        const response = await fetch(`${baseUrl}recipes/me/${idRecipe}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export const getIsMine = async (idRecipe, token) => {
 
 export const pushReview = async (idRecipe, review, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}/review`, {
+        const response = await fetch(`${baseUrl}recipes/${idRecipe}/review`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ export const pushReview = async (idRecipe, review, token) => {
 
 export const getRecipesByUserValuation = async (page, idUser, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/user/valuation/${idUser}?page=${page}`, {
+        const response = await fetch(`${baseUrl}recipes/user/valuation/${idUser}?page=${page}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ export const getRecipesByUserValuation = async (page, idUser, token) => {
 
 export const getRecipesByUserDate = async (page, idUser, token) => {
     try {
-        const response = await fetch(`http://127.0.0.1:3007/recipes/user/date/${idUser}?page=${page}`, {
+        const response = await fetch(`${baseUrl}recipes/user/date/${idUser}?page=${page}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ export const createRecipe = async (recipe, token) => {
             formData.append('steps', step);
         });
 
-        const response = await fetch('http://127.0.0.1:3007/recipes/create', {
+        const response = await fetch('${baseUrl}recipes/create', {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -283,7 +283,7 @@ export const editRecipe = async (idRecipe, recipe, token) => {
             formData.append('steps', step);
         });
 
-        const response = await fetch(`http://127.0.0.1:3007/recipes/${idRecipe}`, {
+        const response = await fetch(`${baseUrl}recipes/${idRecipe}`, {
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,
